@@ -1,13 +1,26 @@
-let num1
-let num2
-let operator
+let display =document.getElementById('display');
+let num1 = '';
+let num2 = '';
+let operator = '';
 
-
-function operate() {
-    num1 = parseFloat(document.getElementById('display').innerText)
-    num2 = parseFloat(document.getElementById('display').innerText)
+function updateDisplay(value) {
+    display.value += value;
 }
 
-document.getElementById('btn1').addEventListener('click', function() {
-    document.getElementById('display').innerText += '1'
-});
+function clearDisplay() {
+    document.getElementById('btnClear').addEventListener('click', function() {
+        display.value = '0';
+    });
+}
+
+function calculate() {
+    if (operator === '+') {
+        display.value = parseFloat(num1) + parseFloat(num2);
+    } else if (operator === '-') {
+        display.value = parseFloat(num1) - parseFloat(num2);
+    } else if (operator === '*') {
+        display.value = parseFloat(num1) * parseFloat(num2);
+    } else if (operator === '/') {
+        display.value = parseFloat(num1) / parseFloat(num2);
+    }
+}
