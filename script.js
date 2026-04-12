@@ -2,9 +2,12 @@ let display =document.getElementById('display');
 let num1 = '';
 let num2 = '';
 let operator = '';
+let currentInput = '';
 
 function updateDisplay(value) {
-    display.value += value;
+    currentInput = currentInput + value;
+    currentInput += value;
+    display.textContent = currentInput;
 }
 
 function clearDisplay() {
