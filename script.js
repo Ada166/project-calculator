@@ -4,26 +4,70 @@ let num2 = '';
 let operator = '';
 let currentInput = '';
 
+
+let buttons = document.querySelectorAll('.btnContainer button');
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        updateDisplay(this.textContent);
+    });
+});
+
+
+// Update the display when a number button is clicked
+// Logic: When a number button is clicked, the value of that button is added
+
 function updateDisplay(value) {
-    currentInput = currentInput + value;
     currentInput += value;
     display.textContent = currentInput;
 }
 
-function clearDisplay() {
-    document.getElementById('btnClear').addEventListener('click', function() {
-        display.value = '0';
+console.log(display);
+// Clear the display when the clear button is clicked
+
+let clear = document.getElementById('btnClear').addEventListener('click', function() {
+        currentInput = '';
+        display.textContent = '0';
     });
+
+
+function chooseOperator(op) {
+    num1 = currentInput;
+    operator = op;
+    currentInput = '';
 }
 
 function calculate() {
     if (operator === '+') {
-        display.value = parseFloat(num1) + parseFloat(num2);
+        display.textContent = parseFloat(num1) + parseFloat(num2);
     } else if (operator === '-') {
-        display.value = parseFloat(num1) - parseFloat(num2);
+        display.textContent = parseFloat(num1) - parseFloat(num2);
     } else if (operator === '*') {
-        display.value = parseFloat(num1) * parseFloat(num2);
+        display.textContent = parseFloat(num1) * parseFloat(num2);
     } else if (operator === '/') {
-        display.value = parseFloat(num1) / parseFloat(num2);
+        display.textContent = parseFloat(num1) / parseFloat(num2);
+    } else {
+        display.textContent = 'Error';
     }
 }
+
+// Button handlers for operators and equals
+document.getElementById('btnAdd').addEventListener('click', function() {
+    chooseOperator('+');
+});
+
+document.getElementById('btnSubtract').addEventListener('click', function() {
+    chooseOperator('-');
+});
+
+document.getElementById('btnMultiply').addEventListener('click', function() {
+    chooseOperator('*');
+});
+
+document.getElementById('btnDivide').addEventListener('click', function() {
+    chooseOperator('/');
+});
+
+document.getElementById('btnEquals').addEventListener('click', function() {
+    num2 = currentInput;
+    calculate();
+});
