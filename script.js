@@ -26,12 +26,20 @@ console.log(display);
 
 let clear = document.getElementById('btnClear').addEventListener('click', function() {
         currentInput = '';
+        num1 = '';
+        num2 = '';
+        operator = '';
         display.textContent = '0';
     });
 
 
 function chooseOperator(op) {
-    num1 = currentInput;
+    if (num1 && operator && currentInput) {
+        num2 = currentInput;
+        calculate();
+    }
+
+    num1 = display.textContent;
     operator = op;
     currentInput = '';
 }
