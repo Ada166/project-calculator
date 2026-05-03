@@ -41,7 +41,7 @@ function chooseOperator(op) {
 
     num1 = display.textContent;
     operator = op;
-    currentInput = '';
+    currentInput = '' + op;
 }
 
 function calculate() {
